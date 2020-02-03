@@ -4,6 +4,7 @@ public class FilePartReader {
 
 	public FilePartReader(){
 		filePath = "";
+		fromLine = toLine = -1;
 	}
 	public FilePartReader(String filePath, int fromLine, int toLine){
 		setup(filePath, fromLine, toLine);
