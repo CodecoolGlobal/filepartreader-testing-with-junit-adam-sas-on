@@ -1,8 +1,13 @@
+import java.io.*;
+
 public class FilePartReader {
+	private InputStream is = null;
 	private String filePath;
-	int fromLine, toLine;
+	private int fromLine, toLine;
+	private boolean fileExists = false;
 
 	public FilePartReader(){
+		is = null;
 		filePath = "";
 		fromLine = toLine = -1;
 	}
@@ -17,6 +22,8 @@ public class FilePartReader {
 		this.filePath = filePath;
 		this.fromLine = fromLine;
 		this.toLine = toLine;
+		is = this.getClass().getResourceAsStream(filePath);
+		fileExists = is != null;
 	}
 
 	/**
@@ -25,7 +32,25 @@ public class FilePartReader {
 	 * @return
 	 */
 	public String read(){
-		return "";
+		if( !fileExists )
+			return "";
+
+		String fileContent = "";
+		BufferedReader br;
+		br = new BufferedReader(new InputStreamReader(is) );
+
+		String line;
+		StringBuilder sb = new StringBuilder();
+		try {
+			while( (line = br.readLine()) != null){
+				sb.append(line + "\n");
+			}
+			br.close();
+
+			fileContent = sb.toString();
+		} catch (IOException ignored){}
+
+		return fileContent;
 	}
 
 	/**
@@ -35,5 +60,13 @@ public class FilePartReader {
 	 */
 	public String readLines(){
 		return "";
+	}
+
+	void setReadRange(int fromLine, int toLine){
+		if(toLine < fromLine)
+			return;
+
+		this.fromLine = fromLine;
+		this.toLine = toLine;
 	}
 }
