@@ -19,10 +19,20 @@ public class FilePartReader {
 		this.toLine = toLine;
 	}
 
+	/**
+	 * Opens the file on filePath, and gives back it's content as a String.
+	 *
+	 * @return
+	 */
 	public String read(){
 		return "";
 	}
 
+	/**
+	 * It gives back every line from it's content between fromLine and toLine (both of them are included),
+	 * and returns these lines as a String.
+	 * @return
+	 */
 	public String readLines(){
 		return "";
 	}
