@@ -59,7 +59,32 @@ public class FilePartReader {
 	 * @return
 	 */
 	public String readLines(){
-		return "";
+		if( !fileExists )
+			return "";
+
+		String fileContent = "";
+		BufferedReader br = new BufferedReader(new InputStreamReader(is) );
+		int lineCount = 1;
+
+		StringBuilder sb = new StringBuilder();
+
+		try {
+			if(fromLine > 1) {
+				while(lineCount < fromLine && br.readLine() != null)
+					lineCount++;
+			}
+
+			String line;
+			while(lineCount <= toLine && (line = br.readLine()) != null){
+				sb.append(line + "\n");
+				lineCount++;
+			}
+			br.close();
+
+			fileContent = sb.toString();
+		} catch (IOException ignored){}
+
+		return fileContent;
 	}
 
 	void setReadRange(int fromLine, int toLine){
@@ -68,5 +93,13 @@ public class FilePartReader {
 
 		this.fromLine = fromLine;
 		this.toLine = toLine;
+	}
+	void setFilePath(String newFile){
+		filePath = newFile;
+		is = this.getClass().getResourceAsStream(filePath);
+		fileExists = is != null;
+
+		if( !fileExists )
+			filePath = "";
 	}
 }
