@@ -76,7 +76,10 @@ public class FilePartReader {
 
 			String line;
 			while(lineCount <= toLine && (line = br.readLine()) != null){
-				sb.append(line + "\n");
+				if(lineCount < toLine)
+					line += "\n";
+
+				sb.append(line);
 				lineCount++;
 			}
 			br.close();
@@ -87,19 +90,24 @@ public class FilePartReader {
 		return fileContent;
 	}
 
-	void setReadRange(int fromLine, int toLine){
-		if(toLine < fromLine)
+	public void setReadRange(int fromLine, int toLine){
+		if(fromLine < 1 || toLine < fromLine)
 			return;
 
 		this.fromLine = fromLine;
 		this.toLine = toLine;
+
+		is = this.getClass().getResourceAsStream(filePath);// like reset the position of reading pointer in file;
 	}
-	void setFilePath(String newFile){
+	public void setFilePath(String newFile){
 		filePath = newFile;
+		resetFile();
+	}
+	public void resetFile(){
 		is = this.getClass().getResourceAsStream(filePath);
 		fileExists = is != null;
-
 		if( !fileExists )
 			filePath = "";
 	}
 }
+
