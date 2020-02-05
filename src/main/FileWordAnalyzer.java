@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileWordAnalyzer {
-	FilePartReader reader;
+	private FilePartReader reader;
 
 	public FileWordAnalyzer(){
 		reader = new FilePartReader();
@@ -38,4 +38,15 @@ public class FileWordAnalyzer {
 
 		return words;
 	}
+
+	public void setReadRange(int fromLine, int toLine){
+		reader.setReadRange(fromLine, toLine);
+	}
+	public void setFilePath(String newFile){
+		reader.setFilePath(newFile);
+	}
+	public void resetReader(){
+		reader.resetFile();
+	}
 }
+
