@@ -103,6 +103,33 @@ public class FileWordAnalyzer {
 	 */
 	public List<String> getWordsContainingSubstring(String subString){
 		List<String> words = new ArrayList<>();
+		String fileContent = reader.readLines();
+
+		if(fileContent.length() < 1)
+			return words;
+
+		String[] wordsArray = fileContent.split("[^\\w]+");
+
+		if(readUnique && caseSensitive){
+			insertCaseSensitiveAndUniqueWithSubstring(words, wordsArray, subString);
+		} else if(readUnique){
+			insertCaseInsensitiveAndUniqueWithSubstring(words, wordsArray, subString);
+		} else if(!caseSensitive){
+			String lowerSubString = subString.toLowerCase();
+			int i, count = wordsArray.length;
+
+			for(i = 0; i < count; i++){
+				if(wordsArray[i].toLowerCase().contains(lowerSubString) )
+					words.add(wordsArray[i]);
+			}
+		} else {
+			int i, count = wordsArray.length;
+			for(i = 0; i < count; i++){
+				if(wordsArray[i].contains(subString) )
+					words.add(wordsArray[i]);
+			}
+
+		}
 
 		return words;
 	}
