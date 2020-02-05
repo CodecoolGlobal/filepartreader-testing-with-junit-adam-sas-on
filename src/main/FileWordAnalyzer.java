@@ -43,6 +43,21 @@ public class FileWordAnalyzer {
 		if(fileContent.length() < 1)
 			return words;
 
+		String[] wordsArray = fileContent.split("[^\\w]+]");
+
+		if(readUnique && caseSensitive){
+			insertCaseSensitiveAndUnique(words, wordsArray);
+		} else if(readUnique){
+			insertCaseInsensitiveAndUnique(words, wordsArray);
+		} else {
+			int i, count = wordsArray.length;
+			for(i = 0; i < count; i++){
+				words.add(wordsArray[i]);
+			}
+
+		}
+
+		words.sort(String::compareToIgnoreCase);
 		return words;
 	}
 
