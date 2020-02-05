@@ -19,19 +19,53 @@ public class FileWordAnalyzer {
 		return list.stream().anyMatch(str::equalsIgnoreCase);
 	}
 
+	/**
+	 * Loop through words array and checks if word is in list; if not (meaning is unique)
+	 * then inserts the word into list.
+	 *
+	 * @param list: list to fill with unique words;
+	 * @param words: list from which we choose the words.
+	 */
 	private void insertCaseSensitiveAndUnique(List<String> list, String[] words){
 		for(String word : words){
 			if(!list.contains(word))
 				list.add(word);
 		}
 	}
+	/**
+	 * Same as above, but new method instead overloading to the name of method explaining itself.
+	 */
+	private void insertCaseSensitiveAndUniqueWithSubstring(List<String> list, String[] words, String subString){
+		for(String word : words){
+			if(word.contains(subString) && !list.contains(word))
+				list.add(word);
+		}
+	}
 
+	/**
+	 * Loop through words array and checks if word is in list; if not (meaning is unique)
+	 * then inserts the word into list. It is also an ignore-case method.
+	 *
+	 * @param list: list to fill with unique words;
+	 * @param words: list from which we choose the words.
+	 */
 	private void insertCaseInsensitiveAndUnique(List<String> list, String[] words){
 		for(String word : words){
 			if(!caseInsensitiveContains(list, word) )
 				list.add(word);
 		}
 	}
+	/**
+	 * Same as above, but new method instead overloading to the name of method explaining itself.
+	 */
+	private void insertCaseInsensitiveAndUniqueWithSubstring(List<String> list, String[] words, String subString){
+		final String lowerSubString = subString.toLowerCase();
+		for(String word : words){
+			if(word.toLowerCase().contains(lowerSubString) && !caseInsensitiveContains(list, word) )
+				list.add(word);
+		}
+	}
+
 	/**
 	 * Returns the words ordered by alphabetically as an ArrayList.
 	 * @return
@@ -43,7 +77,7 @@ public class FileWordAnalyzer {
 		if(fileContent.length() < 1)
 			return words;
 
-		String[] wordsArray = fileContent.split("[^\\w]+]");
+		String[] wordsArray = fileContent.split("[^\\w]+");
 
 		if(readUnique && caseSensitive){
 			insertCaseSensitiveAndUnique(words, wordsArray);
@@ -91,13 +125,16 @@ public class FileWordAnalyzer {
 
 	public void caseInsensitiveSet(){
 		caseSensitive = false;
+		reader.resetFile();
 	}
 	public void caseSensitiveSet(){
 		caseSensitive = true;
+		reader.resetFile();
 	}
 
 	public void setWordsUniqueness(boolean uniqueness){
 		readUnique = uniqueness;
+		reader.resetFile();
 	}
 }
 
