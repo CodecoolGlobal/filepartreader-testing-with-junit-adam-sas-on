@@ -88,5 +88,16 @@ public class FileWordAnalyzer {
 	public void resetReader(){
 		reader.resetFile();
 	}
+
+	public void caseInsensitiveSet(){
+		caseSensitive = false;
+	}
+	public void caseSensitiveSet(){
+		caseSensitive = true;
+	}
+
+	public void setWordsUniqueness(boolean uniqueness){
+		readUnique = uniqueness;
+	}
 }
 
