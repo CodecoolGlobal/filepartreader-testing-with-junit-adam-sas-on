@@ -55,7 +55,7 @@ PALPATINE: Master Yoda, do you think it will really come to war?
 
 YODA: The Dark Side clouds everything. Impossible to see, the future is.
 
-DAR WAC: (in Huttese) The loyalist committee has arrived, my Lord. 
+DAR WAC: (in Huttese) The loyalist committee has arrived, my Lord.
 
 PALPATINE: Good. Send them in. We will discuss this matter later.
 
@@ -206,7 +206,7 @@ ANAKIN: Not another lecture, Master. At least not on the economics of politics..
 
 ANAKIN: ...and besides, you're generalizing. The Chancellor doesn't appear to be corrupt.
 
-OBI-WAN: Palpatine's a politician. 
+OBI-WAN: Palpatine's a politician.
 
 OBI-WAN: I've observed that he is very clever in following the passions and the prejudices of the Senators.
 
@@ -765,7 +765,7 @@ JANGO FETT: Master who?
 
 OBI-WAN: Sifo-Dyas. Is he not the Jedi who hired you for this job?
 
-JANGO FETT: Never heard of him. 
+JANGO FETT: Never heard of him.
 
 OBI-WAN: Really?
 
@@ -837,7 +837,7 @@ I have successfully made contact with the Prime Minister of Kamino. They are usi
 
 MACE WINDU: Do you think these cloners are involved in the plot to assassinate Senator Amidala?
 
-OBI-WAN: No, Master. There appears to be no motive. 
+OBI-WAN: No, Master. There appears to be no motive.
 
 YODA: Do not assume anything, Obi-Wan. Clear, your mind must be if you are to discover the real villains behind the plot.
 
@@ -851,7 +851,7 @@ OBI-WAN: Yes, Master. I will report back when I have him.
 
 YODA: Blind we are, if creation of this clone army we could not see.
 
-MACE WINDU: I think it is time we informed the Senate that our ability to use the Force has diminished. 
+MACE WINDU: I think it is time we informed the Senate that our ability to use the Force has diminished.
 
 YODA: Only the Dark Lords of the Sith know of our weakness. If informed the Senate is, multiply our adversaries will.
 
@@ -1437,10 +1437,10 @@ GEORGE LUCAS
 Screenplay by
 GEORGE LUCAS and JONATHAN HALES
 
-Story by 
+Story by
 GEORGE LUCAS
 
-Produced by 
+Produced by
 RICK McCALLUM
 
 Executive Producer
