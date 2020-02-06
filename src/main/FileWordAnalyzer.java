@@ -7,6 +7,8 @@ public class FileWordAnalyzer {
 	private boolean caseSensitive = true;
 	/* sets if analyzed words can be repeated or not. Default not: */
 	private boolean readUnique = true;
+	/* string to set once during removing palindromes from an array: */
+	private String palindromeWord;
 
 	public FileWordAnalyzer(){
 		reader = new FilePartReader();
@@ -66,9 +68,39 @@ public class FileWordAnalyzer {
 		}
 	}
 
+	private int removePalindrome(String[] words, String palindrome, final int wordsLimit){
+		String revPalindrome = new StringBuilder(palindrome).reverse().toString(),
+				palindromeLocal = palindrome;
+
+		if(!caseSensitive) {
+			palindromeLocal = palindrome.toLowerCase();
+			revPalindrome = revPalindrome.toLowerCase();
+		}
+
+		String wordCase;// word to use for 'lowercase' when case-insensitive was set;
+		boolean isReverse, wasNotSet = true;
+		int i = 0;
+		palindromeWord = "";
+		for(int j = 0; j < wordsLimit; i++, j++) {
+			wordCase = (caseSensitive)? words[j] : words[j].toLowerCase();
+			isReverse = revPalindrome.equals(wordCase);
+
+			if(palindromeLocal.equals(wordCase) || isReverse){
+				if(isReverse && wasNotSet){
+					palindromeWord = words[j];
+					wasNotSet = false;
+				}
+				i--;
+			} else if(i != j)
+				words[i] = words[j];// override word from another index;
+		}
+
+		return i;
+	}
+
 	/**
 	 * Returns the words ordered by alphabetically as an ArrayList.
-	 * @return
+	 * @return: an alphabetically sorted list of words from file in reader which meet ignore-case and uniqueness requirements.
 	 */
 	public List<String> getWordsOrderedAlphabetically(){
 		List<String> words = new ArrayList<>();
@@ -77,7 +109,7 @@ public class FileWordAnalyzer {
 		if(fileContent.length() < 1)
 			return words;
 
-		String[] wordsArray = fileContent.split("[^\\w]+");
+		String[] wordsArray = fileContent.split("[^\\w\\-']+");
 
 		if(readUnique && caseSensitive){
 			insertCaseSensitiveAndUnique(words, wordsArray);
@@ -99,7 +131,7 @@ public class FileWordAnalyzer {
 	 * Returns the words which contains the subString.
 	 *
 	 * @param subString: string to check in words.
-	 * @return
+	 * @return: a list of words from file in reader which have a subString and meet ignore-case and uniqueness requirements.
 	 */
 	public List<String> getWordsContainingSubstring(String subString){
 		List<String> words = new ArrayList<>();
@@ -108,7 +140,7 @@ public class FileWordAnalyzer {
 		if(fileContent.length() < 1)
 			return words;
 
-		String[] wordsArray = fileContent.split("[^\\w]+");
+		String[] wordsArray = fileContent.split("[^\\w\\-']+");
 
 		if(readUnique && caseSensitive){
 			insertCaseSensitiveAndUniqueWithSubstring(words, wordsArray, subString);
@@ -136,6 +168,23 @@ public class FileWordAnalyzer {
 
 	public List<String> getStringsWhichPalindromes(){
 		List<String> words = new ArrayList<>();
+		String fileContent = reader.readLines();
+
+		if(fileContent.length() < 1)
+			return words;
+
+		String[] wordsArray = fileContent.split("[^\\w\\-']+");
+		String wordCheck;
+		int count = wordsArray.length;
+		while(count > 1){
+			wordCheck = wordsArray[0];
+			count = removePalindrome(wordsArray, wordCheck, count);
+
+			if(palindromeWord.length() > 0){
+				words.add(wordCheck);
+				words.add(palindromeWord);
+			}
+		}
 
 		return words;
 	}
