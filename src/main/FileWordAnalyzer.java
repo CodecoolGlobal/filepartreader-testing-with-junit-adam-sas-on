@@ -3,7 +3,7 @@ import java.util.List;
 
 public class FileWordAnalyzer {
 	private FilePartReader reader;
-	private final String splitRegex = "[^\\w\\-']+(\\-')*";
+	private final String splitRegex = "[^\\w\\-']+[^\\w]*";
 	/* sets if e.g. 'A' is the same what 'a' or not. Default not: */
 	private boolean caseSensitive = true;
 	/* sets if analyzed words can be repeated or not. Default not: */
