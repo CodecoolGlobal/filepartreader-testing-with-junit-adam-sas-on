@@ -78,18 +78,25 @@ public class FileWordAnalyzer {
 			revPalindrome = revPalindrome.toLowerCase();
 		}
 
-		String wordCase;// word to use for 'lowercase' when case-insensitive was set;
-		boolean isReverse, wasNotSet = true;
-		int i = 0;
 		palindromeWord = "";
+		if(palindromeLocal.equals(revPalindrome) ){
+			palindromeWord = palindrome;
+		}
+
+		String wordCase;// word to use for 'lowercase' when case-insensitive was set;
+		boolean isSelf, isReverse, wasNotSet = true;
+		int i = 0;
+
 		for(int j = 0; j < wordsLimit; i++, j++) {
 			wordCase = (caseSensitive)? words[j] : words[j].toLowerCase();
+			isSelf = palindromeLocal.equals(wordCase);
 			isReverse = revPalindrome.equals(wordCase);
 
-			if(palindromeLocal.equals(wordCase) || isReverse){
-				if(isReverse && wasNotSet){
-					palindromeWord = words[j];
+			if(isSelf || isReverse){
+				if(isReverse && wasNotSet && j > 0){
 					wasNotSet = false;
+					if(isSelf)
+						palindromeWord = words[j];
 				}
 				i--;
 			} else if(i != j)
