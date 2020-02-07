@@ -31,7 +31,7 @@ public class FileWordAnalyzer {
 	 */
 	private void insertCaseSensitiveAndUnique(List<String> list, String[] words){
 		for(String word : words){
-			if(!list.contains(word))
+			if(word.length() > 0 && !list.contains(word))
 				list.add(word);
 		}
 	}
@@ -40,7 +40,7 @@ public class FileWordAnalyzer {
 	 */
 	private void insertCaseSensitiveAndUniqueWithSubstring(List<String> list, String[] words, String subString){
 		for(String word : words){
-			if(word.contains(subString) && !list.contains(word))
+			if(word.length() > 0 && word.contains(subString) && !list.contains(word))
 				list.add(word);
 		}
 	}
@@ -54,7 +54,7 @@ public class FileWordAnalyzer {
 	 */
 	private void insertCaseInsensitiveAndUnique(List<String> list, String[] words){
 		for(String word : words){
-			if(!caseInsensitiveContains(list, word) )
+			if(word.length() > 0 && !caseInsensitiveContains(list, word) )
 				list.add(word);
 		}
 	}
@@ -64,7 +64,7 @@ public class FileWordAnalyzer {
 	private void insertCaseInsensitiveAndUniqueWithSubstring(List<String> list, String[] words, String subString){
 		final String lowerSubString = subString.toLowerCase();
 		for(String word : words){
-			if(word.toLowerCase().contains(lowerSubString) && !caseInsensitiveContains(list, word) )
+			if(word.length() > 0 && word.toLowerCase().contains(lowerSubString) && !caseInsensitiveContains(list, word) )
 				list.add(word);
 		}
 	}
