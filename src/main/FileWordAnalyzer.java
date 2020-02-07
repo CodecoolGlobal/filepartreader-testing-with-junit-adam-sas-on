@@ -3,6 +3,7 @@ import java.util.List;
 
 public class FileWordAnalyzer {
 	private FilePartReader reader;
+	private final String splitRegex = "[^\\w\\-']+(\\-')*";
 	/* sets if e.g. 'A' is the same what 'a' or not. Default not: */
 	private boolean caseSensitive = true;
 	/* sets if analyzed words can be repeated or not. Default not: */
@@ -109,7 +110,7 @@ public class FileWordAnalyzer {
 		if(fileContent.length() < 1)
 			return words;
 
-		String[] wordsArray = fileContent.split("[^\\w\\-']+");
+		String[] wordsArray = fileContent.split(splitRegex);
 
 		if(readUnique && caseSensitive){
 			insertCaseSensitiveAndUnique(words, wordsArray);
@@ -140,7 +141,7 @@ public class FileWordAnalyzer {
 		if(fileContent.length() < 1)
 			return words;
 
-		String[] wordsArray = fileContent.split("[^\\w\\-']+");
+		String[] wordsArray = fileContent.split(splitRegex);
 
 		if(readUnique && caseSensitive){
 			insertCaseSensitiveAndUniqueWithSubstring(words, wordsArray, subString);
@@ -173,7 +174,7 @@ public class FileWordAnalyzer {
 		if(fileContent.length() < 1)
 			return words;
 
-		String[] wordsArray = fileContent.split("[^\\w\\-']+");
+		String[] wordsArray = fileContent.split(splitRegex);
 		String wordCheck;
 		int count = wordsArray.length;
 		while(count > 1){
