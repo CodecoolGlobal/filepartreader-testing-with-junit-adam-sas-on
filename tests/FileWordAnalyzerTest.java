@@ -33,6 +33,13 @@ public class FileWordAnalyzerTest {
 
 		result = analyzer.getWordsContainingSubstring(subString);
 		assertEquals(expected, result);
+
+
+		subString = "Ken";
+		analyzer.setWordsUniqueness(true);
+		expected = Arrays.asList("Kenobi", "broken", "Tusken", "Tuskens", "KENNY");
+		result = analyzer.getWordsContainingSubstring(subString);
+		assertEquals(expected, result);
 	}
 
 	@Test
