@@ -183,15 +183,17 @@ public class FileWordAnalyzer {
 
 		String[] wordsArray = fileContent.split(splitRegex);
 		String wordCheck;
-		int count = wordsArray.length;
+		int count = wordsArray.length, newCount;
 		while(count > 1){
 			wordCheck = wordsArray[0];
-			count = removePalindrome(wordsArray, wordCheck, count);
+			newCount = removePalindrome(wordsArray, wordCheck, count);
 
 			if(palindromeWord.length() > 0){
 				words.add(wordCheck);
-				words.add(palindromeWord);
+				if(count - newCount > 1)
+					words.add(palindromeWord);
 			}
+			count = newCount;
 		}
 
 		return words;
