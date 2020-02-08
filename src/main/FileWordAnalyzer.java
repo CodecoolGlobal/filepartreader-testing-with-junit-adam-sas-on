@@ -184,7 +184,7 @@ public class FileWordAnalyzer {
 		String[] wordsArray = fileContent.split(splitRegex);
 		String wordCheck;
 		int count = wordsArray.length, newCount;
-		while(count > 1){
+		while(count > 0){
 			wordCheck = wordsArray[0];
 			newCount = removePalindrome(wordsArray, wordCheck, count);
 
