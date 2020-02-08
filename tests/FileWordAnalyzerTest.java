@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,6 +9,11 @@ import static org.junit.Assert.*;
 public class FileWordAnalyzerTest {
 	FileWordAnalyzer analyzer = new FileWordAnalyzer();
 
+	private int diffForSymmetricThousandthNumbers(final int number){
+		int mod = number/1000;
+		mod = number - 1000*mod;
+		return (mod > 990)? 11 : 110;
+	}
 	@Test
 	public void getWordsOrderedAlphabetically() {
 	}
@@ -43,7 +49,34 @@ public class FileWordAnalyzerTest {
 	}
 
 	@Test
-	public void getStringsWhichPalindromes() {
+	public void getStringsWhichPalindromesByNumbers() {
+		analyzer.setFilePath("numbers_test.txt");
+		analyzer.setReadRange(1, 1500);
+
+		List<String> expected = new ArrayList<>(100);
+		int n = 1001, diff = 110, repeatedNumber = 1551;
+
+		while(n <= repeatedNumber){
+			expected.add( Integer.toString(n) );
+			n += diff;
+		}
+		expected.add( Integer.toString(repeatedNumber) );
+
+		repeatedNumber = 7007;
+		while(n <= repeatedNumber){
+			expected.add( Integer.toString(n) );
+			diff = diffForSymmetricThousandthNumbers(n);
+			n += diff;
+		}
+		expected.add( Integer.toString(repeatedNumber) );
+		while(n < 10000){
+			expected.add( Integer.toString(n) );
+			diff = diffForSymmetricThousandthNumbers(n);
+			n += diff;
+		}
+
+		List<String> result = analyzer.getStringsWhichPalindromes();
+		assertEquals(expected, result);
 	}
 
 }
