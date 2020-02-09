@@ -14,8 +14,23 @@ public class FileWordAnalyzerTest {
 		mod = number - 1000*mod;
 		return (mod > 990)? 11 : 110;
 	}
+
 	@Test
-	public void getWordsOrderedAlphabetically() {
+	public void getWordsOrderedAlphabeticallyByStarWars() {
+		analyzer.setFilePath("Star_Wars_-_Attack_of_the_Clones.txt");
+		analyzer.setReadRange(892, 898);
+
+		List<String> expected = Arrays.asList("ANAKIN", "baan", "bata", "Booda", "boska",
+				"chasa", "Chut", "di", "Ding", "Du", "hopa", "hota", "Jedi", "Ke", "mi",
+				"No", "pee", "Shmi", "Skywalker", "tu", "wanga", "WATTO", "Yo");
+		List<String> result;
+
+		analyzer.setReadRange(892, 898);
+		analyzer.caseInsensitiveSet();
+		analyzer.setWordsUniqueness(true);
+
+		result = analyzer.getWordsOrderedAlphabetically();
+		assertEquals(expected, result);
 	}
 
 	@Test
@@ -51,7 +66,7 @@ public class FileWordAnalyzerTest {
 	@Test
 	public void getStringsWhichPalindromesByNumbers() {
 		analyzer.setFilePath("numbers_test.txt");
-		analyzer.setReadRange(1, 1500);
+		analyzer.setReadRange(1);
 
 		List<String> expected = new ArrayList<>(100);
 		int n = 1001, diff = 110, repeatedNumber = 1551;
