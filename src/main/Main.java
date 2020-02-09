@@ -16,30 +16,30 @@ public class Main {
 		System.out.println(fileContent);
 
 
-		FileWordAnalyzer analyzer = new FileWordAnalyzer(fileName, 10, 1400);
+		FileWordAnalyzer analyzer = new FileWordAnalyzer(fileName, 1, 1520);
 		List<String> words = analyzer.getWordsOrderedAlphabetically();
-		System.out.println("\nUnique and case sensitive words from  " + fileName + "\n\t" + words.size() + " words:");
+		System.out.println("\n\tUnique and case sensitive words from  " + fileName + "\n\t" + words.size() + " words:");
 		System.out.println(words);
 
 		analyzer.caseInsensitiveSet();
 		words = analyzer.getWordsOrderedAlphabetically();
-		System.out.println("\nUnique and case insensitive words from  " + fileName + "\n\t" + words.size() + " words:");
+		System.out.println("\tUnique and case insensitive words from  " + fileName + "\n\t" + words.size() + " words:");
 		System.out.println(words);
 
 		analyzer.caseSensitiveSet();
 		analyzer.setFilePath("lorem_ipsum.txt");
 		words = analyzer.getStringsWhichPalindromes();
-		System.out.println("\nPalindromes (case sensitive) from lorem_ipsum.txt\n\t" + words.size() + " words:");
+		System.out.println("\n\tPalindromes (case sensitive) from lorem_ipsum.txt\n\t" + words.size() + " words:");
 		System.out.println(words);
 
 		analyzer.setFilePath(fileName);
 		words = analyzer.getStringsWhichPalindromes();
-		System.out.println("\nPalindromes (case sensitive) from " + fileName + "\n\t" + words.size() + " words:");
+		System.out.println("\n\tPalindromes (case sensitive) from " + fileName + "\n\t" + words.size() + " words:");
 		System.out.println(words);
 
 		analyzer.caseInsensitiveSet();
 		words = analyzer.getStringsWhichPalindromes();
-		System.out.println("\nPalindromes (case insensitive) from " + fileName + "\n\t" + words.size() + " words:");
+		System.out.println("\tPalindromes (case insensitive) from " + fileName + "\n\t" + words.size() + " words:");
 		System.out.println(words);
 	}
 }
