@@ -212,6 +212,9 @@ public class FileWordAnalyzer {
 	public void setReadRange(int fromLine, int toLine){
 		reader.setReadRange(fromLine, toLine);
 	}
+	public void setReadRange(int fromLine){
+		reader.setReadRange(fromLine);
+	}
 	public void setFilePath(String newFile){
 		reader.setFilePath(newFile);
 	}
