@@ -99,6 +99,14 @@ public class FilePartReader {
 
 		is = this.getClass().getResourceAsStream(filePath);// like reset the position of reading pointer in file;
 	}
+	public void setReadRange(int fromLine){
+		if(fromLine < 1)
+			return;
+
+		this.fromLine = fromLine;
+		this.toLine = Integer.MAX_VALUE;
+		is = this.getClass().getResourceAsStream(filePath);// like reset the position of reading pointer in file;
+	}
 	public void setFilePath(String newFile){
 		filePath = newFile;
 		resetFile();
