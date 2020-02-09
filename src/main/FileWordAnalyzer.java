@@ -69,6 +69,16 @@ public class FileWordAnalyzer {
 		}
 	}
 
+	/**
+	 * It removes values from words array according to palindrome string and case-sensitive setting.
+	 * The way it removes is to overwrite the words to remove by the words from the next neighbour index
+	 * to the end of the array defined by wordsLimit value.
+	 *
+	 * @param words: array of strings to analyze;
+	 * @param palindrome: a word to analyze and remove from array according to case-sensitivity;
+	 * @param wordsLimit: number of significant elements to check, it has to be <= words.length;
+	 * @return: new number of significant elements in words array;
+	 */
 	private int removePalindrome(String[] words, String palindrome, final int wordsLimit){
 		String revPalindrome = new StringBuilder(palindrome).reverse().toString(),
 				palindromeLocal = palindrome;
